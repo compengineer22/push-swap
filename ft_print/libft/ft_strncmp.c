@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/01 17:34:35 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/01 18:10:51 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	size_t	i;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+		i++;
 	}
-	return (1);
+	return (0);
 }

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/01 18:11:25 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/01 18:43:42 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	const unsigned char	*str;
+	size_t				i;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < n)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		if (str[i] == (unsigned char)c)
+			return ((char *)&str[i]);
+		i++;
 	}
-	return (1);
+	return (0);
 }

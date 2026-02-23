@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/02 22:21:00 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/02 23:30:45 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
+#include<stdlib.h>
+#include "libft.h"
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	char	*str;
+	size_t	i;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	i = 0;
+	if (!s || !f)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		return (NULL);
 	}
-	return (1);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (str);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

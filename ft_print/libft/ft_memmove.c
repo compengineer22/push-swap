@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/10/31 19:43:48 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/03 20:50:25 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	unsigned char		*des;
+	const unsigned char	*sr;
+	size_t				i;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	des = (unsigned char *)dest;
+	sr = (unsigned char *)src;
+	if (des < sr)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		i = 0;
+		while (i < n)
+		{
+			des[i] = sr[i];
+			i++;
+		}
 	}
-	return (1);
+	else if (des > sr)
+	{
+		i = n;
+		while (i > 0)
+		{
+			i--;
+			des[i] = sr[i];
+		}
+	}
+	return (dest);
 }

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/04 00:02:33 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/04 18:54:42 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include <stdlib.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	t_list	*n_list;
+	t_list	*n_node;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	if (!lst || !f)
+		return (NULL);
+	n_list = NULL;
+	while (lst)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		n_node = ft_lstnew(f(lst->content));
+		if (!n_node)
+		{
+			ft_lstclear(&n_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&n_list, n_node);
+		lst = lst->next;
 	}
-	return (1);
+	return (n_list);
 }

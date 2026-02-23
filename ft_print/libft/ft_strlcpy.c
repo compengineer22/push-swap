@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/10/31 21:28:57 by hsrour            #+#    #+#             */
+/*   Updated: 2025/10/31 21:32:54 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	size_t	i;
+	size_t	len;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	len = 0;
+	while (src[len] != '\0')
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		len++;
 	}
-	return (1);
+	if (size == 0)
+	{
+		return (len);
+	}
+	i = 0;
+	while (src[i] != '\0' && i < size -1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (len);
 }

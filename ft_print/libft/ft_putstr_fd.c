@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/02 23:12:31 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/02 23:15:50 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<unistd.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+void	ft_putstr_fd(char *s, int fd)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	int	i;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (1);
 }

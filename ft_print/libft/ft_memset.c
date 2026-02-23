@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/10/31 18:01:29 by hsrour            #+#    #+#             */
+/*   Updated: 2025/10/31 19:02:48 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	unsigned char	*p;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	p = (unsigned char *)s;
+	while (n > 0)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		*p = (unsigned char)c;
+		p++;
+		n--;
 	}
-	return (1);
+	return (s);
 }

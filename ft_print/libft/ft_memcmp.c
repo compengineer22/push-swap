@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/11/01 18:44:24 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/03 20:56:08 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
-}
+	unsigned int	i;
+	unsigned char	*s11;
+	unsigned char	*s22;
 
-int is_sorted(t_stack *s)
-{
-	t_node	*current;
-
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	s11 = (unsigned char *)s1;
+	s22 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		if (s11[i] != s22[i])
+		{
+			return (s11[i] - s22[i]);
+		}
+		i++;
 	}
-	return (1);
+	return (0);
 }

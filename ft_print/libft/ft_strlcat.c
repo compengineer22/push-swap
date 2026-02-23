@@ -1,36 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsrour <hsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 22:52:09 by hsrour            #+#    #+#             */
-/*   Updated: 2026/02/23 23:29:44 by hsrour           ###   ########.fr       */
+/*   Created: 2025/10/31 21:29:55 by hsrour            #+#    #+#             */
+/*   Updated: 2025/11/02 23:30:12 by hsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 
-#include "../../includes/push_swap.h"
-
-void	print_error(void)
+static size_t	ft_strlen(char *str)
 {
-	ft_putstr_fd("Error\n",2);
-	exit(1);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
 }
 
-int is_sorted(t_stack *s)
+size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
-	t_node	*current;
+	size_t	i;
+	size_t	j;
+	size_t	d;
+	size_t	s;
 
-	if(!s || s->size <= 1)
-		return (1);
-	current = s->top;
-	while(current->next)
+	i = 0;
+	d = ft_strlen(dest);
+	s = ft_strlen(src);
+	if (size <= d)
+		return (size + s);
+	i = d;
+	j = 0;
+	while (src[j] && i < size - 1)
 	{
-		if(current->value > current->next)
-			return (0);
-		current = current->next;
+		dest[i] = src[j];
+		j++;
+		i++;
 	}
-	return (1);
+	dest[i] = '\0';
+	return (d + s);
 }
